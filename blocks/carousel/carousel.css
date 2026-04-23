@@ -1,0 +1,226 @@
+/*
+ * Apple-style Entertainment Carousel
+ * Horizontal scrolling cards with snap behavior
+ */
+
+/* ----------------------------------------------------------------
+   Carousel Wrapper
+   ---------------------------------------------------------------- */
+.carousel-wrapper {
+  max-width: 100% !important;
+  padding: 40px 0 !important;
+  overflow: hidden;
+}
+
+.carousel {
+  padding: 0;
+  margin: 0;
+}
+
+/* ----------------------------------------------------------------
+   Carousel Container (injected by JS)
+   ---------------------------------------------------------------- */
+.carousel .carousel-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: 8px 24px 24px;
+  margin: 0;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel .carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ----------------------------------------------------------------
+   Carousel Items
+   ---------------------------------------------------------------- */
+.carousel .carousel-item {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: var(--color-dark-bg, #1d1d1f);
+  color: var(--color-white, #fff);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (hover: hover) {
+  .carousel .carousel-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* ----------------------------------------------------------------
+   Carousel Item Content
+   ---------------------------------------------------------------- */
+.carousel .carousel-item > div {
+  padding: 0;
+}
+
+/* Text content */
+.carousel .carousel-item > div:first-child {
+  padding: 24px 20px 16px;
+}
+
+/* Image container */
+.carousel .carousel-item > div:last-child {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel .carousel-item > div:last-child img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel .carousel-item > div:only-child {
+  padding: 24px 20px;
+}
+
+/* ----------------------------------------------------------------
+   Carousel Typography
+   ---------------------------------------------------------------- */
+.carousel h2,
+.carousel h3 {
+  font-size: 19px;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.2;
+  color: var(--color-white, #fff);
+  margin: 0 0 6px;
+}
+
+.carousel h4,
+.carousel h5 {
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 4px;
+}
+
+.carousel p {
+  font-size: 14px;
+  font-weight: var(--font-weight-regular, 400);
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+
+/* ----------------------------------------------------------------
+   Carousel Links
+   ---------------------------------------------------------------- */
+.carousel a {
+  color: var(--color-link, #2997ff);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.carousel a::after {
+  content: none;
+}
+
+.carousel a:hover {
+  text-decoration: underline;
+}
+
+/* ----------------------------------------------------------------
+   Carousel Card Colors — Alternating
+   ---------------------------------------------------------------- */
+.carousel .carousel-item:nth-child(5n+1) {
+  background: linear-gradient(145deg, #1d1d1f 0%, #2a2a2e 100%);
+}
+
+.carousel .carousel-item:nth-child(5n+2) {
+  background: linear-gradient(145deg, #1c1c2e 0%, #2a2340 100%);
+}
+
+.carousel .carousel-item:nth-child(5n+3) {
+  background: linear-gradient(145deg, #1a2a1f 0%, #1f3328 100%);
+}
+
+.carousel .carousel-item:nth-child(5n+4) {
+  background: linear-gradient(145deg, #2a1c1c 0%, #3a2020 100%);
+}
+
+.carousel .carousel-item:nth-child(5n+5) {
+  background: linear-gradient(145deg, #1c2a2a 0%, #203535 100%);
+}
+
+/* ----------------------------------------------------------------
+   Desktop Sizing
+   ---------------------------------------------------------------- */
+@media (min-width: 900px) {
+  .carousel-wrapper {
+    padding: 60px 0 !important;
+  }
+
+  .carousel .carousel-container {
+    padding: 8px 40px 32px;
+    gap: 20px;
+  }
+
+  .carousel .carousel-item {
+    flex: 0 0 320px;
+  }
+
+  .carousel .carousel-item > div:first-child {
+    padding: 28px 24px 18px;
+  }
+
+  .carousel .carousel-item > div:last-child img {
+    height: 220px;
+  }
+
+  .carousel h2,
+  .carousel h3 {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel .carousel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 0 32px;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Carousel without JS (fallback)
+   ---------------------------------------------------------------- */
+.carousel:not(:has(.carousel-container)) {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 24px 24px;
+  scrollbar-width: none;
+}
+
+.carousel:not(:has(.carousel-container))::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel:not(:has(.carousel-container)) > div {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: var(--color-dark-bg, #1d1d1f);
+  color: var(--color-white, #fff);
+  padding: 24px 20px;
+}
