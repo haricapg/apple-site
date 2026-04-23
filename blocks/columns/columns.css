@@ -1,33 +1,91 @@
+/* Apple-style promo cards in 2-column grid */
+.columns-container { padding: 12px 0 0; }
+.columns-container .columns-wrapper { max-width: 100%; padding: 0; }
+
 .columns > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+/* Each column = a card */
+.columns > div > div {
+  background: var(--apple-bg-gray, #f5f5f7);
+  text-align: center;
+  padding: 48px 32px 52px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  min-height: 460px;
+  border-radius: 0;
 }
 
-.columns img {
-  width: 100%;
+/* Alternate card backgrounds */
+.columns-container:nth-child(even) .columns > div > div { background: #fff; }
+.columns-container:nth-child(odd) .columns > div > div { background: var(--apple-bg-gray, #f5f5f7); }
+
+/* Card image */
+.columns > div > div picture {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.columns > div > div img {
+  max-width: 55%;
+  height: auto;
+  margin: 0 auto;
 }
 
-.columns > div > div {
-  order: 1;
+/* Product name */
+.columns > div > div h2,
+.columns > div > div h3 {
+  font-family: var(--font-display, "SF Pro Display", "Helvetica Neue", Arial, sans-serif);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--apple-text, #1d1d1f);
+  margin: 0 0 4px;
 }
 
-.columns > div > .columns-img-col {
-  order: 0;
+/* Description text */
+.columns > div > div p {
+  font-size: 17px;
+  line-height: 1.47;
+  color: var(--apple-gray, #86868b);
+  margin: 0 0 4px;
 }
 
-.columns > div > .columns-img-col img {
-  display: block;
+/* CTA container */
+.columns > div > div p:last-child {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 12px;
 }
 
-@media (width >= 900px) {
+/* First card in a row can span full width for emphasis */
+.columns > div:first-child {
+  /* no special treatment needed now */
+}
+
+/* Mobile: single column */
+@media (max-width: 734px) {
   .columns > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 6px;
   }
-
   .columns > div > div {
-    flex: 1;
-    order: unset;
+    min-height: 380px;
+    padding: 36px 24px 40px;
   }
+  .columns > div > div h2 { font-size: 24px; }
+}
+
+@media (min-width: 735px) and (max-width: 1068px) {
+  .columns > div > div h2 { font-size: 24px; }
+  .columns > div > div { padding: 40px 24px 44px; min-height: 400px; }
 }
