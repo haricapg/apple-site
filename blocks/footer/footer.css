@@ -1,20 +1,180 @@
+/*
+ * Apple-style Footer
+ * Light gray background, multi-column links, small text
+ */
+
+/* ----------------------------------------------------------------
+   Footer Container
+   ---------------------------------------------------------------- */
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: var(--color-background-alt, #f5f5f7);
+  color: var(--color-foreground-secondary, #86868b);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 22px 32px;
 }
 
-footer .footer p {
+/* ----------------------------------------------------------------
+   Top Separator
+   ---------------------------------------------------------------- */
+footer .footer::before {
+  content: '';
+  display: block;
+  border-top: 1px solid var(--color-separator, #d2d2d7);
+  margin-bottom: 18px;
+}
+
+/* ----------------------------------------------------------------
+   Disclaimer / Top Text
+   ---------------------------------------------------------------- */
+footer .footer > div:first-child p {
+  font-size: 12px;
+  line-height: 1.67;
+  color: var(--color-foreground-secondary, #86868b);
+  margin: 0 0 12px;
+}
+
+/* ----------------------------------------------------------------
+   Footer Link Columns
+   ---------------------------------------------------------------- */
+footer .columns-wrapper {
+  max-width: 100%;
+  padding: 0;
+}
+
+footer .columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
   margin: 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--color-separator, #d2d2d7);
+  border-bottom: 1px solid var(--color-separator, #d2d2d7);
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+footer .columns > div {
+  padding: 0;
+}
+
+footer .columns h2,
+footer .columns h3,
+footer .columns h4,
+footer .columns h5 {
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-foreground, #1d1d1f);
+  margin: 0 0 8px;
+  letter-spacing: 0;
+}
+
+footer .columns ul,
+footer .columns ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer .columns li {
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+footer .columns a {
+  color: var(--color-foreground-secondary, #86868b);
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer .columns a:hover {
+  color: var(--color-foreground, #1d1d1f);
+  text-decoration: underline;
+}
+
+footer .columns a::after {
+  content: none;
+}
+
+footer .columns p {
+  font-size: 12px;
+  color: var(--color-foreground-secondary, #86868b);
+  margin: 0 0 4px;
+  line-height: 1.67;
+}
+
+/* ----------------------------------------------------------------
+   Footer Bottom: Copyright & Legal
+   ---------------------------------------------------------------- */
+footer .footer > div:last-child {
+  padding-top: 16px;
+}
+
+footer .footer > div:last-child p {
+  font-size: 12px;
+  color: var(--color-foreground-secondary, #86868b);
+  margin: 0 0 6px;
+  line-height: 1.67;
+}
+
+footer .footer > div:last-child a {
+  color: var(--color-foreground-secondary, #86868b);
+  text-decoration: none;
+}
+
+footer .footer > div:last-child a:hover {
+  color: var(--color-foreground, #1d1d1f);
+  text-decoration: underline;
+}
+
+footer .footer > div:last-child a::after {
+  content: none;
+}
+
+/* Legal link separator */
+footer .footer > div:last-child a + a::before {
+  content: '|';
+  margin: 0 8px;
+  color: var(--color-separator, #d2d2d7);
+}
+
+/* ----------------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------------- */
+@media (min-width: 600px) {
+  footer .columns {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  footer .columns {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px 32px;
+  }
+
+  footer .footer {
+    padding: 18px 0 32px;
+  }
+}
+
+@media (max-width: 899px) {
+  footer .footer {
+    padding: 18px 20px 32px;
+  }
+
+  /* Collapsible columns on mobile */
+  footer .columns h2,
+  footer .columns h3,
+  footer .columns h4,
+  footer .columns h5 {
+    border-bottom: 1px solid var(--color-separator, #d2d2d7);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
   }
 }
