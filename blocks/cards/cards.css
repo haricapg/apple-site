@@ -1,27 +1,283 @@
-.cards > ul {
+/*
+ * Apple-style Product / Promo Cards Grid
+ * Two-column layout on desktop, single column on mobile
+ */
+
+/* ----------------------------------------------------------------
+   Cards Container
+   ---------------------------------------------------------------- */
+.cards-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 12px;
   list-style: none;
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
 }
 
-.cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+/* ----------------------------------------------------------------
+   Individual Card
+   ---------------------------------------------------------------- */
+.cards > div,
+.cards > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 48px 24px 56px;
+  min-height: 400px;
+  overflow: hidden;
+  position: relative;
+  border: none;
+  border-radius: 0;
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+/* Alternating card backgrounds */
+.cards > div:nth-child(odd),
+.cards > li:nth-child(odd) {
+  background-color: var(--color-background, #fff);
 }
 
-.cards .cards-card-image {
-  line-height: 0;
+.cards > div:nth-child(even),
+.cards > li:nth-child(even) {
+  background-color: var(--color-background-alt, #f5f5f7);
 }
 
-.cards > ul > li img {
+/* ----------------------------------------------------------------
+   Card Content Layout
+   ---------------------------------------------------------------- */
+.cards > div > div,
+.cards > li > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+}
+
+/* Text container */
+.cards > div > div:first-child,
+.cards > li > div:first-child {
+  order: 1;
+  z-index: 1;
+}
+
+/* Image container */
+.cards > div > div:last-child,
+.cards > li > div:last-child {
+  order: 2;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* If card only has one div (image-only or text-only) */
+.cards > div > div:only-child,
+.cards > li > div:only-child {
+  order: 0;
+}
+
+/* ----------------------------------------------------------------
+   Card Typography
+   ---------------------------------------------------------------- */
+.cards h2,
+.cards h3 {
+  font-size: 28px;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  margin: 0 0 4px;
+  color: var(--color-foreground, #1d1d1f);
+}
+
+.cards h1 {
+  font-size: 40px;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0 0 6px;
+  color: var(--color-foreground, #1d1d1f);
+}
+
+.cards p {
+  font-size: 17px;
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-foreground-secondary, #86868b);
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+/* Subtitle / tagline (often first paragraph) */
+.cards p:first-of-type {
+  font-size: 17px;
+  color: var(--color-foreground-secondary, #86868b);
+}
+
+/* Price or highlight text */
+.cards strong,
+.cards em {
+  color: var(--color-foreground, #1d1d1f);
+}
+
+/* ----------------------------------------------------------------
+   Card Links
+   ---------------------------------------------------------------- */
+.cards a {
+  color: var(--color-link, #2997ff);
+  font-size: 17px;
+  text-decoration: none;
+  margin: 0 8px;
+  display: inline;
+}
+
+.cards a::after {
+  content: '\00A0\203A';
+  font-size: 1.2em;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.cards a:hover {
+  text-decoration: underline;
+}
+
+.cards a:hover::after {
+  transform: translateX(2px);
+}
+
+/* Link row */
+.cards p:has(a) {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: transparent;
+}
+
+/* ----------------------------------------------------------------
+   Card Images
+   ---------------------------------------------------------------- */
+.cards img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.cards picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------
+   Desktop Grid
+   ---------------------------------------------------------------- */
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .cards > div,
+  .cards > li {
+    padding: 56px 36px 64px;
+    min-height: 500px;
+  }
+
+  .cards h2,
+  .cards h3 {
+    font-size: 32px;
+  }
+
+  .cards h1 {
+    font-size: 48px;
+  }
+
+  /* Full-width first card */
+  .cards > div:first-child,
+  .cards > li:first-child {
+    grid-column: 1 / -1;
+    min-height: 520px;
+    padding: 60px 36px 72px;
+  }
+
+  .cards > div:first-child h2,
+  .cards > div:first-child h3,
+  .cards > li:first-child h2,
+  .cards > li:first-child h3 {
+    font-size: 40px;
+  }
+
+  .cards > div:first-child h1,
+  .cards > li:first-child h1 {
+    font-size: 56px;
+  }
+
+  .cards > div:first-child p,
+  .cards > li:first-child p {
+    font-size: 19px;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Large Desktop
+   ---------------------------------------------------------------- */
+@media (min-width: 1200px) {
+  .cards {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cards > div,
+  .cards > li {
+    min-height: 550px;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Dark Card Variant
+   ---------------------------------------------------------------- */
+.cards.dark > div,
+.cards.dark > li,
+.cards > div.dark,
+.cards > li.dark {
+  background-color: var(--color-dark-bg, #1d1d1f);
+}
+
+.cards.dark h1,
+.cards.dark h2,
+.cards.dark h3,
+.cards > div.dark h1,
+.cards > div.dark h2,
+.cards > div.dark h3 {
+  color: var(--color-white, #fff);
+}
+
+.cards.dark p,
+.cards > div.dark p {
+  color: var(--color-foreground-secondary, #86868b);
+}
+
+/* ----------------------------------------------------------------
+   Card hover effect (subtle)
+   ---------------------------------------------------------------- */
+.cards > div,
+.cards > li {
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .cards > div:hover,
+  .cards > li:hover {
+    transform: scale(1.005);
+  }
 }
