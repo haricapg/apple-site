@@ -1,80 +1,57 @@
-/* Apple-style promo cards in 2-column grid */
-.columns-container { padding: 12px 0; }
+/* Promo grid - matches apple.com tile layout */
+.columns-container { padding: 0; }
 .columns-container .columns-wrapper { max-width: 100%; padding: 0; }
 
 .columns > div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  max-width: 1020px;
+  max-width: 1416px;
   margin: 0 auto;
   padding: 0 12px;
 }
 
-/* Each column = a card */
+/* Each tile */
 .columns > div > div {
-  background: var(--apple-bg-gray, #f5f5f7);
+  background: #f5f5f7;
   text-align: center;
-  padding: 48px 32px 52px;
+  padding: 56px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 460px;
+  min-height: 580px;
   justify-content: center;
+  overflow: hidden;
 }
 
-/* Card image */
-.columns > div > div p:first-child {
-  margin-bottom: 8px;
-}
-.columns > div > div p:first-child picture {
-  display: flex;
-  justify-content: center;
-}
+/* Tile image */
+.columns > div > div p:first-child { margin-bottom: 4px; }
+.columns > div > div p:first-child picture { display: flex; justify-content: center; }
 .columns > div > div img {
-  max-width: 50%;
-  height: auto;
-  margin: 0 auto;
+  max-width: 50%; height: auto; margin: 0 auto;
 }
 
 /* Product name */
-.columns > div > div h2,
-.columns > div > div h3 {
-  font-family: var(--font-display, "SF Pro Display", "Helvetica Neue", Arial, sans-serif);
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 1.1;
-  color: var(--apple-text, #1d1d1f);
-  margin: 4px 0;
-  text-align: center;
+.columns > div > div h2, .columns > div > div h3 {
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Arial, sans-serif;
+  font-size: 28px; font-weight: 600;
+  line-height: 1.1; color: #1d1d1f;
+  margin: 4px 0 2px;
 }
 
-/* Description text */
+/* Description */
 .columns > div > div p {
-  font-size: 17px;
-  line-height: 1.47;
-  color: var(--apple-gray, #86868b);
-  margin: 0 0 4px;
-  text-align: center;
+  font-size: 17px; line-height: 1.47;
+  color: #86868b; text-align: center;
 }
 
-/* CTA container (styled in global styles.css) */
-
-/* Mobile */
 @media (max-width: 734px) {
   .columns > div {
     grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 0 6px;
+    gap: 12px; padding: 0 6px;
   }
   .columns > div > div {
-    min-height: 380px;
-    padding: 36px 24px 40px;
+    min-height: 420px; padding: 40px 24px;
   }
   .columns > div > div h2 { font-size: 24px; }
-}
-
-@media (min-width: 735px) and (max-width: 1068px) {
-  .columns > div > div h2 { font-size: 24px; }
-  .columns > div > div { padding: 40px 24px 44px; min-height: 400px; }
 }
