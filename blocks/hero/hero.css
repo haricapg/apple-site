@@ -1,4 +1,4 @@
-/* Hero - Apple style: white bg, centered content, product image on top */
+/* Hero - Apple style: white bg, centered, product image on top */
 .hero-container { background: #fff; }
 .hero-container .hero-wrapper { max-width: 100%; padding: 0; }
 
@@ -7,23 +7,32 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 48px 24px 64px;
+  padding: 48px 24px 56px;
   background: #fff;
   color: var(--apple-text, #1d1d1f);
   max-width: 980px;
   margin: 0 auto;
 }
 
-/* Image row */
+.hero > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Image */
 .hero > div > div:first-child {
-  margin-bottom: 0;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
 }
 .hero > div > div:first-child picture {
   display: flex;
   justify-content: center;
 }
 .hero > div > div:first-child img {
-  max-width: 70%;
+  max-width: 65%;
   height: auto;
   margin: 0 auto;
 }
@@ -36,35 +45,35 @@
   line-height: 1.07;
   letter-spacing: -.015em;
   color: var(--apple-text, #1d1d1f);
-  margin: 12px 0 4px;
+  margin: 8px 0 4px;
+  text-align: center;
 }
 
 /* Tagline */
-.hero > div > div:nth-child(3) p {
+.hero > div > div:nth-child(3) {
+  text-align: center;
+}
+.hero > div > div:nth-child(3) p,
+.hero > div > div:nth-child(3) {
   font-size: 21px;
   line-height: 1.24;
   font-weight: 400;
   color: var(--apple-text, #1d1d1f);
-  margin: 0 0 8px;
+  margin: 0;
 }
 
-/* CTA links (pill buttons via global styles) */
-.hero > div > div:last-child p {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 16px;
-}
+/* CTA row (pill buttons styled in global styles.css) */
 
-/* Section separators - thin line between hero sections */
+/* Border between hero sections */
 .hero-container + .hero-container {
-  border-top: 1px solid var(--apple-separator, #d2d2d7);
+  border-top: none;
 }
 
 @media (max-width: 734px) {
   .hero h1, .hero h2 { font-size: 40px; }
-  .hero > div > div:nth-child(3) p { font-size: 19px; }
-  .hero > div > div:first-child img { max-width: 90%; }
+  .hero > div > div:nth-child(3), .hero > div > div:nth-child(3) p { font-size: 19px; }
+  .hero > div > div:first-child img { max-width: 85%; }
+  .hero { padding: 32px 20px 44px; }
 }
 
 @media (min-width: 735px) and (max-width: 1068px) {
