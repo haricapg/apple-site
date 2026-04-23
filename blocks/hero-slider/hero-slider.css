@@ -1,0 +1,283 @@
+/*
+ * Apple-style Hero Slider
+ * Full-width dark background with fade transitions between slides
+ */
+
+/* ----------------------------------------------------------------
+   Hero Slider Wrapper
+   ---------------------------------------------------------------- */
+.hero-slider-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  background-color: var(--color-black, #000);
+  color: var(--color-white, #fff);
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------------
+   Individual Slides
+   ---------------------------------------------------------------- */
+.hero-slider .hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+  z-index: 1;
+}
+
+.hero-slider .hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+  position: relative;
+}
+
+/* Only first slide takes space when all absolute */
+.hero-slider .hero-slide:first-child {
+  position: relative;
+}
+
+.hero-slider .hero-slide:first-child:not(.active) {
+  position: absolute;
+}
+
+.hero-slider .hero-slide.active ~ .hero-slide:first-child {
+  position: absolute;
+}
+
+/* ----------------------------------------------------------------
+   Slide Content
+   ---------------------------------------------------------------- */
+.hero-slider .hero-slide > div {
+  max-width: 820px;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+}
+
+/* ----------------------------------------------------------------
+   Slide Typography
+   ---------------------------------------------------------------- */
+.hero-slider h1 {
+  font-size: 56px;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0 0 6px;
+  color: var(--color-white, #fff);
+}
+
+.hero-slider h2 {
+  font-size: 48px;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.07;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+  color: var(--color-white, #fff);
+}
+
+.hero-slider h3 {
+  font-size: 32px;
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: 1.12;
+  margin: 0 0 6px;
+  color: var(--color-white, #fff);
+}
+
+.hero-slider p {
+  font-size: 21px;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.38;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 14px;
+}
+
+.hero-slider p:first-of-type {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ----------------------------------------------------------------
+   Slide Links
+   ---------------------------------------------------------------- */
+.hero-slider a {
+  color: var(--color-link, #2997ff);
+  font-size: 21px;
+  text-decoration: none;
+  margin: 0 12px;
+}
+
+.hero-slider a::after {
+  content: '\00A0\203A';
+  font-size: 1.2em;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.hero-slider a:hover {
+  text-decoration: underline;
+}
+
+.hero-slider a:hover::after {
+  transform: translateX(3px);
+}
+
+/* Link row */
+.hero-slider p:has(a) {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: transparent;
+  margin-top: 8px;
+}
+
+/* ----------------------------------------------------------------
+   Slide Images
+   ---------------------------------------------------------------- */
+.hero-slider img {
+  max-width: 100%;
+  height: auto;
+  margin: 24px auto 0;
+  display: block;
+}
+
+.hero-slider picture {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------
+   Navigation Dots
+   ---------------------------------------------------------------- */
+.hero-slider-nav {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.hero-slider-nav button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-slider-nav button.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+.hero-slider-nav button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* ----------------------------------------------------------------
+   Alternate Slide Backgrounds
+   ---------------------------------------------------------------- */
+.hero-slider .hero-slide:nth-child(3n+1) {
+  background-color: #000;
+}
+
+.hero-slider .hero-slide:nth-child(3n+2) {
+  background-color: #1d1d1f;
+}
+
+.hero-slider .hero-slide:nth-child(3n+3) {
+  background: linear-gradient(180deg, #000 0%, #1d1d1f 100%);
+}
+
+/* ----------------------------------------------------------------
+   Light Slide Variant
+   ---------------------------------------------------------------- */
+.hero-slider .hero-slide.light {
+  background-color: var(--color-background-alt, #f5f5f7);
+  color: var(--color-foreground, #1d1d1f);
+}
+
+.hero-slider .hero-slide.light h1,
+.hero-slider .hero-slide.light h2,
+.hero-slider .hero-slide.light h3 {
+  color: var(--color-foreground, #1d1d1f);
+}
+
+.hero-slider .hero-slide.light p {
+  color: var(--color-foreground-secondary, #86868b);
+}
+
+/* ----------------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------------- */
+@media (max-width: 899px) {
+  .hero-slider {
+    min-height: 420px;
+  }
+
+  .hero-slider .hero-slide {
+    padding: 60px 20px;
+  }
+
+  .hero-slider h1 {
+    font-size: 36px;
+  }
+
+  .hero-slider h2 {
+    font-size: 30px;
+  }
+
+  .hero-slider h3 {
+    font-size: 24px;
+  }
+
+  .hero-slider p {
+    font-size: 17px;
+  }
+
+  .hero-slider p:first-of-type {
+    font-size: 19px;
+  }
+
+  .hero-slider a {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-slider {
+    min-height: 580px;
+  }
+
+  .hero-slider .hero-slide {
+    padding: 100px 40px;
+  }
+
+  .hero-slider h1 {
+    font-size: 64px;
+  }
+
+  .hero-slider h2 {
+    font-size: 56px;
+  }
+}
