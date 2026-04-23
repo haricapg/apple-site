@@ -1,14 +1,4 @@
 :root {
-  --apple-blue: #0071e3;
-  --apple-blue-hover: #0077ed;
-  --apple-text: #1d1d1f;
-  --apple-gray: #86868b;
-  --apple-bg-gray: #f5f5f7;
-  --apple-footer-text: #6e6e73;
-  --apple-link: #424245;
-  --apple-separator: #d2d2d7;
-  --font-display: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-text: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --nav-height: 44px;
 }
 
@@ -16,120 +6,84 @@
 
 body {
   margin: 0; padding: 0;
-  font-family: var(--font-text);
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 17px; line-height: 1.47;
-  color: var(--apple-text);
+  color: #1d1d1f;
   background: #fff;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body.appear { display: unset; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 600; line-height: 1.08;
-  letter-spacing: -.01em;
-  margin: 0 0 8px;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600; line-height: 1.07;
+  letter-spacing: -.005em;
+  margin: 0;
 }
 
-a { color: var(--apple-blue); text-decoration: none; }
+a { color: #06c; text-decoration: none; }
 a:hover { text-decoration: underline; }
 img { max-width: 100%; height: auto; display: block; }
-p { margin: 0 0 12px; }
+p { margin: 0; }
 
 main { margin-top: var(--nav-height); }
 main .section { padding: 0; margin: 0; }
 main .section > div { max-width: 100%; padding: 0; margin: 0 auto; }
 
-/* ---- Pill Button Styles ---- */
-/* Hero CTA: links are inside div > div > div:last-child (no p wrapper) */
+/* ---- Pill Buttons (hero) ---- */
 .hero > div > div:last-child {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  display: flex; justify-content: center;
+  gap: 16px; flex-wrap: wrap; margin-top: 18px;
 }
 .hero > div > div:last-child a {
-  display: inline-block;
-  border-radius: 980px;
-  padding: 11px 24px;
-  font-size: 17px;
-  font-weight: 400;
-  text-decoration: none !important;
-  text-align: center;
-  min-width: 100px;
+  display: inline-block; border-radius: 980px;
+  padding: 11px 21px; font-size: 17px; font-weight: 400;
+  text-decoration: none !important; text-align: center;
+  min-width: 26px; line-height: 1.18;
   transition: background .3s, color .3s, border-color .3s;
 }
 .hero > div > div:last-child a:first-child {
-  background: var(--apple-blue);
-  color: #fff;
-  border: 2px solid var(--apple-blue);
+  background: #0071e3; color: #fff;
+  border: 0.67px solid transparent;
 }
-.hero > div > div:last-child a:first-child:hover {
-  background: var(--apple-blue-hover);
-  border-color: var(--apple-blue-hover);
-}
+.hero > div > div:last-child a:first-child:hover { background: #0077ed; }
 .hero > div > div:last-child a:last-child {
-  background: transparent;
-  color: var(--apple-blue);
-  border: 2px solid var(--apple-blue);
+  background: transparent; color: #06c;
+  border: 0.67px solid #06c;
 }
 .hero > div > div:last-child a:last-child:hover {
-  background: var(--apple-blue);
-  color: #fff;
+  background: #06c; color: #fff;
 }
 
-/* Columns CTA: links inside p:last-child */
+/* ---- Pill Buttons (promo cards - smaller) ---- */
+.columns > div > div p:last-child {
+  display: flex; justify-content: center;
+  gap: 12px; flex-wrap: wrap; margin-top: 14px;
+}
 .columns > div > div p:last-child a {
-  display: inline-block;
-  border-radius: 980px;
-  padding: 11px 24px;
-  font-size: 17px;
-  font-weight: 400;
-  text-decoration: none !important;
-  text-align: center;
-  min-width: 90px;
+  display: inline-block; border-radius: 980px;
+  padding: 8px 15px; font-size: 14px; font-weight: 400;
+  text-decoration: none !important; text-align: center;
+  line-height: 1.18;
   transition: background .3s, color .3s, border-color .3s;
 }
-.columns > div > div p:last-child {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
 .columns > div > div p:last-child a:first-child {
-  background: var(--apple-blue);
-  color: #fff;
-  border: 2px solid var(--apple-blue);
+  background: #0071e3; color: #fff;
+  border: 0.67px solid transparent;
 }
-.columns > div > div p:last-child a:first-child:hover {
-  background: var(--apple-blue-hover);
-  border-color: var(--apple-blue-hover);
+.columns > div > div p:last-child a:first-child:hover { background: #0077ed; }
+.columns > div > div p:last-child a:nth-child(2) {
+  background: transparent; color: #06c;
+  border: 0.67px solid #06c;
 }
-.columns > div > div p:last-child a:last-child {
-  background: transparent;
-  color: var(--apple-blue);
-  border: 2px solid var(--apple-blue);
+.columns > div > div p:last-child a:nth-child(2):hover {
+  background: #06c; color: #fff;
 }
-.columns > div > div p:last-child a:last-child:hover {
-  background: var(--apple-blue);
-  color: #fff;
-}
-/* Single link in columns - just blue filled */
 .columns > div > div p:last-child a:only-child {
-  background: var(--apple-blue);
-  color: #fff;
-  border: 2px solid var(--apple-blue);
+  background: #0071e3; color: #fff;
+  border: 0.67px solid transparent;
 }
 
-/* Section backgrounds */
-main > .section:nth-child(even) { background: var(--apple-bg-gray); }
-main > .section:nth-child(odd) { background: #fff; }
-
-/* Override EDS default button styles */
-a.button, a.button:any-link, a.button.primary, a.button.secondary {
-  all: unset;
-  cursor: pointer;
-  color: var(--apple-blue);
-}
+/* Override EDS defaults */
+a.button, a.button:any-link { all: unset; cursor: pointer; color: #06c; }
