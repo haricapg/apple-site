@@ -1,366 +1,107 @@
-/*
- * Apple-inspired Design System
- * Global styles for AEM Edge Delivery Services site
- */
-
-/* ----------------------------------------------------------------
-   CSS Custom Properties
-   ---------------------------------------------------------------- */
 :root {
-  /* Colors */
-  --color-background: #fff;
-  --color-background-alt: #f5f5f7;
-  --color-foreground: #1d1d1f;
-  --color-foreground-secondary: #86868b;
-  --color-foreground-tertiary: #6e6e73;
-  --color-link: #2997ff;
-  --color-link-hover: #0077ed;
-  --color-cta: #0066cc;
-  --color-dark-bg: #1d1d1f;
-  --color-black: #000;
-  --color-white: #fff;
-  --color-separator: #d2d2d7;
-
-  /* Typography */
-  --font-family-body: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1.0625rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 1.75rem;
-  --font-size-3xl: 2rem;
-  --font-size-4xl: 2.5rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.5rem;
-  --line-height-tight: 1.07;
-  --line-height-snug: 1.15;
-  --line-height-normal: 1.47;
-
-  /* Layout */
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-text: #1d1d1f;
+  --apple-gray: #86868b;
+  --apple-bg-gray: #f5f5f7;
+  --apple-footer-text: #6e6e73;
+  --apple-link: #424245;
+  --apple-separator: #d2d2d7;
+  --font-display: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-text: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --nav-height: 44px;
-  --content-max-width: 980px;
-  --content-wide-width: 1200px;
-  --section-spacing: 0;
-  --content-padding: 1rem;
-
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.3s ease;
-  --transition-slow: 0.5s ease;
 }
 
-/* ----------------------------------------------------------------
-   Reset & Base
-   ---------------------------------------------------------------- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-normal);
-  color: var(--color-foreground);
-  background-color: var(--color-background);
+  font-family: var(--font-text);
+  font-size: 17px;
+  line-height: 1.47;
+  color: var(--apple-text);
+  background: #fff;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
-/* ----------------------------------------------------------------
-   Typography
-   ---------------------------------------------------------------- */
+body.appear { display: unset; }
+
 h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 0.5em;
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-tight);
-  letter-spacing: -0.005em;
-  color: inherit;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.01em;
+  margin: 0 0 8px;
 }
 
-h1 {
-  font-size: var(--font-size-5xl);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: -0.015em;
+a { color: var(--apple-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; height: auto; display: block; }
+p { margin: 0 0 12px; }
+
+/* Main content */
+main { margin-top: var(--nav-height); }
+main .section { padding: 0; margin: 0; }
+main .section > div { max-width: 100%; padding: 0; margin: 0 auto; }
+
+/* Pill button links inside hero & columns */
+.hero p:last-child,
+.columns .columns-col > div > p:last-child,
+.columns > div > div > p:last-child {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 16px;
 }
 
-h2 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: -0.01em;
-}
-
-h3 {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
-}
-
-h4 {
-  font-size: var(--font-size-xl);
-}
-
-h5 {
-  font-size: var(--font-size-lg);
-}
-
-h6 {
-  font-size: var(--font-size-base);
-}
-
-p {
-  margin: 0 0 1em;
-  color: var(--color-foreground-secondary);
-}
-
-/* ----------------------------------------------------------------
-   Links & CTAs
-   ---------------------------------------------------------------- */
-a {
-  color: var(--color-link);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: var(--color-link-hover);
-  text-decoration: underline;
-}
-
-/* "Learn more >" link style */
-.section a:not([class]):not(:only-child) {
-  color: var(--color-link);
-  font-size: var(--font-size-lg);
-  text-decoration: none;
-}
-
-.section a:not([class]):not(:only-child):hover {
-  text-decoration: underline;
-}
-
-/* Add chevron after inline links in sections */
-.section p a:not([class])::after {
-  content: '\00A0\203A';
-  font-size: 1.2em;
+.hero p:last-child a,
+.columns .columns-col > div > p:last-child a,
+.columns > div > div > p:last-child a {
   display: inline-block;
-  transition: transform var(--transition-fast);
+  border-radius: 980px;
+  padding: 11px 24px;
+  font-size: 17px;
+  font-weight: 400;
+  text-decoration: none !important;
+  text-align: center;
+  min-width: 100px;
+  transition: background .3s, color .3s;
 }
 
-.section p a:not([class]):hover::after {
-  transform: translateX(2px);
+.hero p:last-child a:first-child,
+.columns .columns-col > div > p:last-child a:first-child,
+.columns > div > div > p:last-child a:first-child {
+  background: var(--apple-blue);
+  color: #fff;
+  border: 2px solid var(--apple-blue);
+}
+.hero p:last-child a:first-child:hover,
+.columns .columns-col > div > p:last-child a:first-child:hover,
+.columns > div > div > p:last-child a:first-child:hover {
+  background: var(--apple-blue-hover);
+  border-color: var(--apple-blue-hover);
 }
 
-/* ----------------------------------------------------------------
-   Images
-   ---------------------------------------------------------------- */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.hero p:last-child a:nth-child(2),
+.columns .columns-col > div > p:last-child a:nth-child(2),
+.columns > div > div > p:last-child a:nth-child(2) {
+  background: transparent;
+  color: var(--apple-blue);
+  border: 2px solid var(--apple-blue);
 }
-
-/* ----------------------------------------------------------------
-   Sections & Layout
-   ---------------------------------------------------------------- */
-header {
-  height: var(--nav-height);
-}
-
-main {
-  overflow: hidden;
-}
-
-main .section {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-main .section > .default-content-wrapper,
-main .section > [class*="-wrapper"] {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding: 40px var(--content-padding);
-}
-
-/* Full-width block wrappers */
-main .section > .hero-slider-wrapper,
-main .section > .hero-wrapper {
-  max-width: 100%;
-  padding: 0;
+.hero p:last-child a:nth-child(2):hover,
+.columns .columns-col > div > p:last-child a:nth-child(2):hover,
+.columns > div > div > p:last-child a:nth-child(2):hover {
+  background: var(--apple-blue);
+  color: #fff;
 }
 
 /* Section alternating backgrounds */
-main .section:nth-child(odd) {
-  background-color: var(--color-background);
-}
+main .section:nth-child(even) { background: var(--apple-bg-gray); }
+main .section:nth-child(odd) { background: #fff; }
 
-main .section:nth-child(even) {
-  background-color: var(--color-background-alt);
-}
-
-/* Dark section variant */
-main .section.dark,
-main .section[data-theme="dark"] {
-  background-color: var(--color-dark-bg);
-  color: var(--color-white);
-}
-
-main .section.dark h1,
-main .section.dark h2,
-main .section.dark h3,
-main .section[data-theme="dark"] h1,
-main .section[data-theme="dark"] h2,
-main .section[data-theme="dark"] h3 {
-  color: var(--color-white);
-}
-
-main .section.dark p,
-main .section[data-theme="dark"] p {
-  color: var(--color-foreground-secondary);
-}
-
-/* Center text in section headings */
-main .section > .default-content-wrapper {
-  text-align: center;
-}
-
-main .section > .default-content-wrapper h2 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 0.25em;
-}
-
-main .section > .default-content-wrapper p {
-  font-size: var(--font-size-lg);
-  color: var(--color-foreground-secondary);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ----------------------------------------------------------------
-   Buttons
-   ---------------------------------------------------------------- */
-a.button.primary,
-a.button:any-link {
-  display: inline-block;
-  padding: 8px 22px;
-  border-radius: 980px;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
-  background-color: var(--color-link);
-  color: var(--color-white);
-  border: none;
-}
-
-a.button.primary:hover,
-a.button:any-link:hover {
-  background-color: var(--color-link-hover);
-  text-decoration: none;
-}
-
-a.button.secondary {
-  background-color: transparent;
-  color: var(--color-link);
-  border: 1px solid var(--color-link);
-}
-
-a.button.secondary:hover {
-  background-color: var(--color-link);
-  color: var(--color-white);
-}
-
-/* ----------------------------------------------------------------
-   Icons
-   ---------------------------------------------------------------- */
-.icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon img,
-.icon svg {
-  width: 1em;
-  height: 1em;
-}
-
-/* ----------------------------------------------------------------
-   Responsive
-   ---------------------------------------------------------------- */
-@media (max-width: 899px) {
-  :root {
-    --content-padding: 1.25rem;
-  }
-
-  h1 {
-    font-size: var(--font-size-3xl);
-  }
-
-  h2 {
-    font-size: var(--font-size-2xl);
-  }
-
-  h3 {
-    font-size: var(--font-size-xl);
-  }
-
-  main .section > .default-content-wrapper h2 {
-    font-size: var(--font-size-2xl);
-  }
-
-  main .section > .default-content-wrapper p {
-    font-size: var(--font-size-base);
-  }
-}
-
-@media (min-width: 900px) {
-  :root {
-    --content-padding: 2rem;
-  }
-
-  main .section > .default-content-wrapper,
-  main .section > [class*="-wrapper"] {
-    padding: 60px var(--content-padding);
-  }
-
-  main .section > .hero-slider-wrapper,
-  main .section > .hero-wrapper {
-    padding: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-  :root {
-    --content-padding: 0;
-  }
-}
-
-/* ----------------------------------------------------------------
-   Utility
-   ---------------------------------------------------------------- */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
+/* Hide default button class styling */
+a.button { all: unset; cursor: pointer; }
