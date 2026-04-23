@@ -1,81 +1,54 @@
-/* Hero - Apple style: white bg, centered, product image on top */
+/* Hero sections - matches apple.com exactly */
 .hero-container { background: #fff; }
 .hero-container .hero-wrapper { max-width: 100%; padding: 0; }
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  padding: 48px 24px 56px;
+  padding: 56px 0;
   background: #fff;
-  color: var(--apple-text, #1d1d1f);
-  max-width: 980px;
-  margin: 0 auto;
+  color: #1d1d1f;
+  overflow: hidden;
 }
 
 .hero > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-/* Image */
-.hero > div > div:first-child {
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: center;
-}
-.hero > div > div:first-child picture {
-  display: flex;
-  justify-content: center;
-}
+/* Product image */
+.hero > div > div:first-child { margin-bottom: 0; }
+.hero > div > div:first-child picture { display: flex; justify-content: center; }
 .hero > div > div:first-child img {
-  max-width: 65%;
-  height: auto;
+  max-height: 400px; width: auto; max-width: 100%;
   margin: 0 auto;
 }
 
 /* Product name */
 .hero h1, .hero h2 {
-  font-family: var(--font-display, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif);
-  font-size: 56px;
-  font-weight: 600;
-  line-height: 1.07;
-  letter-spacing: -.015em;
-  color: var(--apple-text, #1d1d1f);
-  margin: 8px 0 4px;
-  text-align: center;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 56px; font-weight: 600;
+  line-height: 1.07; letter-spacing: -.015em;
+  color: #1d1d1f; margin: 6px 0 2px;
 }
 
 /* Tagline */
 .hero > div > div:nth-child(3) {
-  text-align: center;
-}
-.hero > div > div:nth-child(3) p,
-.hero > div > div:nth-child(3) {
-  font-size: 21px;
-  line-height: 1.24;
-  font-weight: 400;
-  color: var(--apple-text, #1d1d1f);
-  margin: 0;
+  font-size: 21px; line-height: 1.24;
+  font-weight: 400; color: #1d1d1f;
 }
 
-/* CTA row (pill buttons styled in global styles.css) */
-
-/* Border between hero sections */
-.hero-container + .hero-container {
-  border-top: none;
+/* Full-width hero tile (like iPad Air on apple.com) */
+.hero-container:nth-child(n+3) .hero {
+  background: #f5f5f7;
 }
 
 @media (max-width: 734px) {
+  .hero { padding: 40px 0; }
   .hero h1, .hero h2 { font-size: 40px; }
-  .hero > div > div:nth-child(3), .hero > div > div:nth-child(3) p { font-size: 19px; }
-  .hero > div > div:first-child img { max-width: 85%; }
-  .hero { padding: 32px 20px 44px; }
+  .hero > div > div:nth-child(3) { font-size: 19px; }
+  .hero > div > div:first-child img { max-height: 280px; }
 }
-
 @media (min-width: 735px) and (max-width: 1068px) {
   .hero h1, .hero h2 { font-size: 48px; }
 }
